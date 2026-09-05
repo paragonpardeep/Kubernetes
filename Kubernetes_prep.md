@@ -1,5 +1,16 @@
-## Kubernetes Prep
+## Interesting Facts :
 
+- The Seven-Spoke Logo: The Kubernetes logo is a ship's steering wheel with seven spokes. This is a secret nod to its original internal Google code name, Project 7, which itself was a tribute to the Star Trek character Seven of Nine.
+
+- It Means "Helmsman": The name Kubernetes comes from an ancient Greek word meaning helmsman or ship pilot (the person who steers a ship). This fits perfectly with Docker's theme of carrying "shipping containers."
+
+- Why K8s? People call it K8s simply as a shortcut. The "8" represents the eight letters between the "K" and the "s" (u-b-e-r-n-e-t-e).
+
+- The First Version Was Written in C++: Before Google open-sourced it and rewrote it entirely in Go, the original internal system at Google (called Borg) was written in C++.
+
+- The Pokémon GO Explosion: When Pokémon GO launched in 2016, traffic instantly hit 50 times what the creators expected. The game survived and didn't completely crash only because it was running on Google Cloud's Kubernetes, which automatically scaled up engineering resources on the fly to handle millions of players.
+
+  
 
 # Kubernetes Architecture — The "City + Restaurant" Mental Model
 
