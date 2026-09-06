@@ -212,6 +212,81 @@ If template structure must change, take backup and plan new StatefulSet migratio
 
 If production is impacted, run **helm rollback \<release-name> \<revision> -n \<namespace>**.
 
+
+## More question
+
+
+
+Q21. What happens internally when a pod is deleted?
+
+• Kubernetes marks the pod for termination.
+
+• The container receives a SIGTERM signal.
+
+• preStop hook runs if configured.
+
+• Pod is removed from service endpoints.
+
+• Kubernetes waits for the termination grace period.
+
+• If the container does not stop, SIGKILL is sent.
+
+Q23. How do you design a production-ready Kubernetes cluster?
+
+• Use a highly available control plane.
+
+• Deploy worker nodes across multiple availability zones.
+
+• Configure resource requests and limits for workloads.
+
+• Enable autoscaling for pods and nodes.
+
+• Implement RBAC, network policies, and pod security standards.
+
+• Enable centralized monitoring, logging, alerting, and audit logs.
+
+• Backup etcd and plan disaster recovery.
+
+• Integrate CI/CD pipelines and secure image registries.
+
+Q24. How do you secure a Kubernetes cluster?
+
+• Use RBAC with least privilege access.
+
+• Restrict privileged containers and root access.
+
+• Enforce network policies for pod-to-pod traffic.
+
+• Scan images for vulnerabilities before deployment.
+
+• Use trusted image registries.
+
+• Encrypt secrets at rest.
+
+• Enable audit logging and runtime monitoring.
+
+• Patch Kubernetes components and worker nodes regularly.
+
+Q25. Deployment rollout is stuck. How will you debug?
+
+• Check deployment rollout status.
+
+• Review ReplicaSet and pod events.
+
+• Check pod status and container logs.
+
+• Verify image pull errors and registry access.
+
+• Check readiness probe failures.
+
+• Validate resource availability on nodes.
+
+• Review node health, taints, tolerations, and affinity rules.
+
+• Use rollout history to identify recent changes.
+
+
+
 **Final validation:** confirm Pods are healthy, PVCs are attached, and application data is consistent.
 
 # 5. Quick Troubleshooting Checklist
