@@ -1,5 +1,64 @@
 # Istio Service Mesh from Scratch
 
+
+## Architecture Diagram
+```text
+                         +----------------------+
+                         |      Istiod          |
+                         |  Control Plane Brain |
+                         |----------------------|
+                         | Service Discovery    |
+                         | Config Distribution  |
+                         | Certificate Mgmt     |
+                         +----------+-----------+
+                                    |
+                                    | pushes rules, certs, routes
+                                    v
++-------------------+      +--------+---------+      +-------------------+
+|      Service A    |      |   Envoy Proxy    |----->|   Envoy Proxy     |      +-------------------+
+|  Application Pod  |----->|  Sidecar for A   |      |  Sidecar for B    |----->|      Service B    |
++-------------------+      +------------------+      +-------------------+      |  Application Pod  |
+                                                                                 +-------------------+
+
+External User
+     |
+     v
++-------------------+
+|  Istio Gateway    |
+|  Front Door       |
++---------+---------+
+          |
+          v
+   VirtualService
+   routing rules
+          |
+          v
+   DestinationRule
+   subsets + policies
+```
+
+## Architecture Explanation
+
+•	Istiod is the brain: it does not handle user traffic directly. It gives configuration, certificates, service discovery, and routing rules to Envoy proxies.
+
+•	Envoy sidecar is the traffic worker: it sits beside each application container and handles inbound and outbound service traffic.
+
+•	Service A does not directly talk to Service B: traffic goes from Service A to its Envoy sidecar, then to Service B’s Envoy sidecar, and finally to Service B.
+
+•	Gateway is the front door: it receives external traffic coming from users or external systems.
+
+•	VirtualService decides the route: it decides whether traffic should go to v1, v2, canary, beta users, or a specific path.
+
+•	DestinationRule defines behavior at destination: it defines subsets, load balancing, TLS mode, circuit breaking, and connection policies.
+
+•	mTLS secures communication: both services prove their identity before communication is allowed.
+
+•	Observability is built in: Istio can show traffic flow, latency, errors, retries, and service dependency path without changing application code.
+
+
+
+
+
 > Simple mental models, must-remember concepts, and FAANG-level troubleshooting scenarios.
 
 ## 1. Why Istio Exists
