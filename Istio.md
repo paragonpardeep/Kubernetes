@@ -1,18 +1,35 @@
 # Istio Service Mesh from Scratch
+
 > Simple mental models, must-remember concepts, and FAANG-level troubleshooting scenarios.
+
 ## 1. Why Istio Exists
+
 •	Memory hook: Kubernetes runs microservices; Istio controls how microservices talk to each other.
+
 •	In a microservices system, every service calls many other services.
+
 •	Without Istio, every team must handle retries, timeouts, traffic splitting, security, certificates, observability, and failure handling inside application code.
+
 •	This becomes difficult because every service may implement these things differently.
+
 •	Istio moves these common communication responsibilities from application code to the platform layer.
+
 •	Simple definition: Istio is a service mesh that helps connect, secure, control, and observe service-to-service communication.
+
+
 ## 2. What Is a Service Mesh?
+
 •	Memory hook: Service mesh is the traffic police for microservices.
+
 •	It sits between services and manages communication rules.
+
 •	It decides how requests move, how failures are handled, how security is enforced, and how traffic is observed.
+
 •	Your application still sends normal HTTP, gRPC, or TCP calls.
+
 •	The mesh handles advanced networking behavior without forcing developers to rewrite application logic.
+
+
 ## 3. Istio Architecture in Simple Language
 •	Memory hook: Istio has one brain and many traffic workers.
 •	Control plane: the brain of Istio. It decides the rules and sends configuration to proxies.
