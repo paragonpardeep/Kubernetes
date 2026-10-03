@@ -26,6 +26,47 @@ Application → Kafka → Payment Service
 
 The application produces a payment event, Kafka stores it, and the payment service consumes it.
 
+
+                 ┌──────────────────┐
+                 │    Producers     │
+                 │                  │
+                 │ App / Service /  │
+                 │   Application    │
+                 └────────┬─────────┘
+                          │
+                          │ Messages
+                          ▼
+                ┌─────────────────────┐
+                │       KAFKA         │
+                │      CLUSTER        │
+                │                     │
+                │  ┌───────────────┐  │
+                │  │    Topic      │  │
+                │  │   Orders      │  │
+                │  │               │  │
+                │  │ P0 │ P1 │ P2  │  │
+                │  └───────────────┘  │
+                │                     │
+                │   Broker 1          │
+                │   Broker 2          │
+                │   Broker 3          │
+                └─────────┬───────────┘
+                          │
+                          │ Messages
+                          ▼
+                ┌─────────────────────┐
+                │   Consumer Group    │
+                │                     │
+                │ Consumer 1          │
+                │ Consumer 2          │
+                │ Consumer 3          │
+                └─────────┬───────────┘
+                          │
+                          ▼
+                   ┌─────────────┐
+                   │ Application │
+                   │ / Service   │
+                   └─────────────┘
 ---
 
 # 🧩 2. The Kafka Mental Model
